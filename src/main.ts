@@ -13,7 +13,7 @@ async function bootstrap() {
 
   app.enableCors({
     origin: process.env.CLIENT_URL, // Reads from the environment variable
-    credentials: true,
+    credentials: true, // This allows to send the cookies, I'm not sure why but check https://stackoverflow.com/questions/36824106/express-doesnt-set-a-cookie
   });
   await app.listen(4000);
 }
