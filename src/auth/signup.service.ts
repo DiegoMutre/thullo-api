@@ -65,6 +65,7 @@ export class SignupService {
     res.cookie('refreshToken', refreshToken, {
       httpOnly: true,
       secure: true,
+      sameSite: 'strict',
       // It expires but in a date far in the future, though it can be unnecessary because
       // the refresh token expires in 30 days
       expires: new Date(2147483647000),
