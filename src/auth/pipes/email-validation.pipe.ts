@@ -7,6 +7,9 @@ import {
 import { UserDataDTO } from 'src/auth/dtos/userdata.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 
+/**
+ * Checks if the email received is already used
+ */
 @Injectable()
 export class EmailValidationPipe implements PipeTransform {
   private prisma: PrismaService;
