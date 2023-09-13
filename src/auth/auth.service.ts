@@ -7,7 +7,7 @@ import { ConfigService } from '@nestjs/config';
 import { Response } from 'express';
 
 @Injectable()
-export class SignupService {
+export class AuthService {
   constructor(
     private prismaService: PrismaService,
     private configService: ConfigService,

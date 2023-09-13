@@ -2,20 +2,20 @@ import { Controller, Post, Body, UsePipes, Res } from '@nestjs/common';
 import { Response } from 'express';
 import { UserDataDTO } from 'src/auth/dtos/userdata.dto';
 import { EmailValidationPipe } from 'src/auth/pipes/email-validation.pipe';
-import { SignupService } from 'src/auth/signup.service';
+import { AuthService } from 'src/auth/auth.service';
 
 @Controller({
-  path: '/auth/signup',
+  path: '/auth',
 })
-export class SignupController {
-  constructor(private signupService: SignupService) {}
+export class AuthController {
+  constructor(private authService: AuthService) {}
 
-  @Post()
+  @Post('/signup')
   @UsePipes(EmailValidationPipe)
-  async createUser(
+  async signup(
     @Body() userData: UserDataDTO,
     @Res({ passthrough: true }) response: Response,
   ) {
-    return await this.signupService.createUser(userData, response);
+    return await this.authService.createUser(userData, response);
   }
 }

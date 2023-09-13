@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { SignupModule } from 'src/auth/signup.module';
+import { AuthModule } from 'src/auth/auth.module';
 
 @Module({
   imports: [
-    SignupModule,
+    AuthModule,
     ConfigModule.forRoot({
       // It can be accessed as a service in any module
       isGlobal: true,
