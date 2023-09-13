@@ -1,4 +1,5 @@
-import { Controller, Post, Body, UsePipes } from '@nestjs/common';
+import { Controller, Post, Body, UsePipes, Res } from '@nestjs/common';
+import { Response } from 'express';
 import { UserDataDTO } from 'src/auth/dtos/userdata.dto';
 import { EmailValidationPipe } from 'src/auth/pipes/email-validation.pipe';
 import { SignupService } from 'src/auth/signup.service';
@@ -11,7 +12,10 @@ export class SignupController {
 
   @Post()
   @UsePipes(EmailValidationPipe)
-  async createUser(@Body() userData: UserDataDTO) {
-    await this.signupService.createUser(userData);
+  async createUser(
+    @Body() userData: UserDataDTO,
+    @Res({ passthrough: true }) response: Response,
+  ) {
+    return await this.signupService.createUser(userData, response);
   }
 }
