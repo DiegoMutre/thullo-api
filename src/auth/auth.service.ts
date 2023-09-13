@@ -14,8 +14,11 @@ export class AuthService {
   ) {}
 
   async createUser(data: Prisma.UserCreateInput, res: Response) {
+    // Rounds to be used to hash the password
+    const rounds = 10;
+
     // Hash the password
-    const password = await bcrypt.hash(data.password, 10);
+    const password = await bcrypt.hash(data.password, rounds);
 
     // Save the encrypted password
     const userCreated = await this.prismaService.user.create({
